@@ -1,10 +1,7 @@
 package org.example;
 
 import java.sql.SQLOutput;
-import java.util.AbstractList;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,7 +16,7 @@ public class Main {
     }
 
     //FUNCTION 1: Metodo para meter el nombre de la escuela
-    private static  SchoolManagementSystem createSchool(){
+    private static SchoolManagementSystem createSchool() {
 
         Scanner sc = new Scanner(System.in);
         //PASO 1: dar nombre a la escuela
@@ -31,7 +28,7 @@ public class Main {
         int numOfTeachers = sc.nextInt();
         //PASO 3:
         List<org.example.Teacher> teacherList = new ArrayList<>(numOfTeachers);
-        for (int i = 1; i <= numOfTeachers ; i++) {
+        for (int i = 1; i <= numOfTeachers; i++) {
             System.out.println("Enter the details of teacher " + i);
             System.out.println("Name for this teacher:");
             String teacherName = sc.next();
@@ -44,7 +41,7 @@ public class Main {
         int numOfCourses = sc.nextInt();
         //PASO 5:
         List<org.example.Course> courseList = new ArrayList<>(numOfCourses);
-        for (int i = 1; i <= numOfCourses ; i++) {
+        for (int i = 1; i <= numOfCourses; i++) {
             System.out.println("Enter the details of course " + i);
             System.out.println("Name for this course:");
             String courseName = sc.next();
@@ -57,7 +54,7 @@ public class Main {
         int numOfStudents = sc.nextInt();
         //PASO 7
         List<org.example.Student> studentList = new ArrayList<>(numOfStudents);
-        for (int i = 1; i <= numOfStudents ; i++) {
+        for (int i = 1; i <= numOfStudents; i++) {
             System.out.println("Enter the details of student " + i);
             System.out.println("Name for this student:");
             String studentName = sc.next();
@@ -68,16 +65,16 @@ public class Main {
             studentList.add(new Student(studentName, address, email));
         }
 
-       //SchoolManagementSystem school = new SchoolManagementSystem(String schoolName, List<Teacher> teacherList, List<Student> studentList, List<Course> courseList);
-        return null;
+        SchoolManagementSystem school = new SchoolManagementSystem(String schoolName, List<Teacher> teacherList, List<Student> studentList, List<Course> courseList);
+        return school;
     }
 
     //FUNCTION 2: Metodo para escoger el numero de profesores
 
 
-
     //FUNCTION: Método para mostrar el menú de comandos disponibles
-    private static void showMenuCommands(){
+    private static void showMenuCommands() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("MENU \n"
                 + "1 ENROLL [STUDENT_ID] [COURSE_ID]:\n"
                 + "2 ASSIGN [TEACHER_ID] [COURSE_ID]:\n"
@@ -89,5 +86,72 @@ public class Main {
                 + "8 LOOKUP TEACHER [TEACHER_ID]:\n"
                 + "9 SHOW PROFIT:\n"
                 + "0 EXIT");
+        int option = 1;
+
+        while (option != 0) {
+            option = sc.nextInt();
+            switch (option) {
+                case 1: {
+                        enroll()
+
+
+                    }
+                }
+
+                case 2: {
+                    //assign()
+
+                }
+                case 3: {
+                    showCourses();
+                }
+                case 4: {
+                   // lookUpCourseById();
+                }
+                case 5: {
+                    showStudents();
+                }
+                case 6: {
+                   // lookUpStudentById();
+                }
+                case 7: {
+                    showTeachers();
+                }
+                case 8: {
+                    // lookUpTeacherById();
+                }
+                case 9: {
+
+                }
+
+                default: {
+                    System.err.println("Select a correct option");
+                    break;
+                }
+            }
+        }
+
+    public static void enroll(String studentId, String courseId) {
+        Map<String, String> enrolled = new HashMap<>();
+        enrolled.put(studentId, courseId);
+        course.setMoneyEarned(course.getMoneyEarned + course.getPrice);
     }
+
+    public static void showCourses() {
+        school.getCourseList().toString();
+    }
+
+    public static void showStudents() {
+        school.getStudentList().toString();
+    }
+
+    public static void showTeachers() {
+        school.getTeacherList().toString();
+    }
+
+    public static void showProfit() {
+        school.getProfit().toString();
+    }
+
+
 }
