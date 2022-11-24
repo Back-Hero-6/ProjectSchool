@@ -6,13 +6,8 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-
-        //Creación de del objeto escuela
-        createSchool();
-
-
         //PASO 8
-        showMenuCommands();
+        runSchoolApp();
     }
 
     //FUNCTION 1: Metodo para meter el nombre de la escuela
@@ -65,15 +60,15 @@ public class Main {
             studentList.add(new Student(studentName, address, email));
         }
 
-        SchoolManagementSystem school = new SchoolManagementSystem(String schoolName, List<Teacher> teacherList, List<Student> studentList, List<Course> courseList);
+        SchoolManagementSystem school = new SchoolManagementSystem(schoolName, teacherList, studentList, courseList);
         return school;
     }
 
-    //FUNCTION 2: Metodo para escoger el numero de profesores
-
 
     //FUNCTION: Método para mostrar el menú de comandos disponibles
-    private static void showMenuCommands() {
+    private static void runSchoolApp() {
+        //Initializing the SMS based on a newly created school object by calling createSchool():
+        SchoolManagementSystem sms = createSchool();
         Scanner sc = new Scanner(System.in);
         System.out.println("MENU \n"
                 + "1 ENROLL [STUDENT_ID] [COURSE_ID]:\n"
@@ -86,42 +81,57 @@ public class Main {
                 + "8 LOOKUP TEACHER [TEACHER_ID]:\n"
                 + "9 SHOW PROFIT:\n"
                 + "0 EXIT");
+
         int option = 1;
 
         while (option != 0) {
             option = sc.nextInt();
             switch (option) {
                 case 1: {
-                        enroll()
-
-
-                    }
+                    System.out.println("Please introduce a Student ID to enroll");
+                    String studentId = sc.next();
+                    System.out.println("Please introduce a Course ID to enroll this student");
+                    String courseId = sc.next();
+                    //enroll student
+                    sms.enroll(studentId, courseId);
                 }
-
                 case 2: {
-                    //assign()
-
+                    System.out.println("Please introduce a Teacher ID to assign");
+                    String teacherId = sc.next();
+                    System.out.println("Please introduce a Course ID to enroll this student");
+                    String courseId = sc.next();
+                    //assign teacher
+                    sms.assignTeacher(teacherId, courseId);
                 }
                 case 3: {
-                    showCourses();
+                    //show courses
+                    sms.showCourses();
                 }
                 case 4: {
-                   // lookUpCourseById();
+                    System.out.println("Please introduce a Course ID to search for");
+                    String courseId = sc.next();
+                    sms.lookUpCourseById(courseId);
                 }
                 case 5: {
-                    showStudents();
+                    //show students;
+                    sms.showStudents();
                 }
                 case 6: {
-                   // lookUpStudentById();
+                    System.out.println("Please introduce a Student ID to search for");
+                    String studentId = sc.next();
+                    sms.lookUpStudentById(studentId);
                 }
                 case 7: {
-                    showTeachers();
+                    // show teachers;
+                    sms.showTeachers();
                 }
                 case 8: {
-                    // lookUpTeacherById();
+                    System.out.println("Please introduce a Teacher ID to search for");
+                    String teacherId = sc.next();
+                    sms.lookUpTeacherById(teacherId);
                 }
                 case 9: {
-
+                    sms.showProfit();
                 }
 
                 default: {
@@ -130,28 +140,5 @@ public class Main {
                 }
             }
         }
-
-    public static void enroll(String studentId, String courseId) {
-        Map<String, String> enrolled = new HashMap<>();
-        enrolled.put(studentId, courseId);
-        course.setMoneyEarned(course.getMoneyEarned + course.getPrice);
     }
-
-    public static void showCourses() {
-        school.getCourseList().toString();
-    }
-
-    public static void showStudents() {
-        school.getStudentList().toString();
-    }
-
-    public static void showTeachers() {
-        school.getTeacherList().toString();
-    }
-
-    public static void showProfit() {
-        school.getProfit().toString();
-    }
-
-
 }
