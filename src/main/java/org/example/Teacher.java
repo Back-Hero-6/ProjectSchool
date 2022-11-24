@@ -7,16 +7,19 @@ public class Teacher {
     private String name;
     private double salary;
 
+    private static int nextId = 1;
+    private final int id;
+
 
     //Constructor
 
     public Teacher(String name, double salary) {
-        this.name = name;
-        this.salary = salary;
+        setName(name);
+        setSalary(salary);
+        id = nextId++;
+        setTeacherId();
     }
 
-    public Teacher() {
-    }
 
     //Getters & Setters
 
@@ -24,8 +27,8 @@ public class Teacher {
         return teacherId;
     }
 
-    public void setTeacherId(String teacherId) {
-        this.teacherId = teacherId;
+    public void setTeacherId() {
+        this.teacherId = "T-"+id;
     }
 
     public String getName() {

@@ -1,5 +1,6 @@
 package org.example;
 
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class Main {
@@ -55,10 +56,10 @@ public class Main {
             System.out.println("Address for this student:");
             String address = sc.next();
             System.out.println("Email for this student:");
-            String email = sc.next();
+            sc.nextLine();
+            String email = sc.nextLine();
             studentList.add(new Student(studentName, address, email));
         }
-
         SchoolManagementSystem school = new SchoolManagementSystem(schoolName, teacherList, studentList, courseList);
         return school;
     }
@@ -68,18 +69,9 @@ public class Main {
     private static void runSchoolApp() {
         //Initializing the SMS based on a newly created school object by calling createSchool():
         SchoolManagementSystem sms = createSchool();
+        System.out.println("\n Accessing school database...");
         Scanner sc = new Scanner(System.in);
-        System.out.println("MENU \n"
-                + "1 ENROLL [STUDENT_ID] [COURSE_ID]:\n"
-                + "2 ASSIGN [TEACHER_ID] [COURSE_ID]:\n"
-                + "3 SHOW COURSES:\n"
-                + "4 LOOKUP COURSE [COURSE_ID]:\n"
-                + "5 SHOW STUDENTS:\n"
-                + "6 LOOKUP STUDENT [STUDENT_ID]:\n"
-                + "7 SHOW TEACHERS:\n"
-                + "8 LOOKUP TEACHER [TEACHER_ID]:\n"
-                + "9 SHOW PROFIT:\n"
-                + "0 EXIT");
+        showMenu();
 
         int option = 1;
 
@@ -93,7 +85,11 @@ public class Main {
                     String courseId = sc.next();
                     //enroll student
                     sms.enroll(studentId, courseId);
+                    System.out.println(studentId+" has been enrolled to "+courseId);
+                    sc.nextLine();
+                    showMenu();
                 }
+                break;
                 case 2: {
                     System.out.println("Please introduce a Teacher ID to assign");
                     String teacherId = sc.next();
@@ -101,43 +97,86 @@ public class Main {
                     String courseId = sc.next();
                     //assign teacher
                     sms.assignTeacher(teacherId, courseId);
+                    System.out.println(teacherId+" has been assigned to "+courseId);
+                    sc.nextLine();
+                    showMenu();
                 }
+                break;
                 case 3: {
                     //show courses
-                    sms.showCourses();
+                    System.out.println(sms.showCourses());
+                    sc.nextLine();
+                    showMenu();
                 }
+                break;
                 case 4: {
                     System.out.println("Please introduce a Course ID to search for");
                     String courseId = sc.next();
-                    sms.lookUpCourseById(courseId);
+                    System.out.println(sms.lookUpCourseById(courseId));
+                    sc.nextLine();
+                    showMenu();
                 }
+                break;
                 case 5: {
                     //show students;
-                    sms.showStudents();
+                    System.out.println(sms.showStudents());
+                    sc.nextLine();
+                    showMenu();
                 }
+                break;
                 case 6: {
                     System.out.println("Please introduce a Student ID to search for");
                     String studentId = sc.next();
-                    sms.lookUpStudentById(studentId);
+                    System.out.println(sms.lookUpStudentById(studentId));
+                    sc.nextLine();
+                    showMenu();
                 }
+                break;
                 case 7: {
                     // show teachers;
-                    sms.showTeachers();
+                    System.out.println(sms.showTeachers());
+                    sc.nextLine();
+                    showMenu();
                 }
+                break;
                 case 8: {
                     System.out.println("Please introduce a Teacher ID to search for");
                     String teacherId = sc.next();
-                    sms.lookUpTeacherById(teacherId);
+                    System.out.println(sms.lookUpTeacherById(teacherId));
+                    sc.nextLine();
+                    showMenu();
                 }
+                break;
                 case 9: {
-                    sms.showProfit();
+                    System.out.println(sms.showProfit());
+                    sc.nextLine();
+                    showMenu();
                 }
-
+                break;
+                case 0: {
+                    System.out.println("GOODBYE!");
+                   System.exit(1);
+                }
                 default: {
                     System.err.println("Select a correct option");
+                    showMenu();
                     break;
                 }
             }
         }
+    }
+
+    public static void showMenu() {
+        System.out.println("MENU \n"
+                + "1 ENROLL [STUDENT_ID] [COURSE_ID]:\n"
+                + "2 ASSIGN [TEACHER_ID] [COURSE_ID]:\n"
+                + "3 SHOW COURSES:\n"
+                + "4 LOOKUP COURSE [COURSE_ID]:\n"
+                + "5 SHOW STUDENTS:\n"
+                + "6 LOOKUP STUDENT [STUDENT_ID]:\n"
+                + "7 SHOW TEACHERS:\n"
+                + "8 LOOKUP TEACHER [TEACHER_ID]:\n"
+                + "9 SHOW PROFIT:\n"
+                + "0 EXIT");
     }
 }

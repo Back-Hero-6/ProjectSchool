@@ -61,39 +61,36 @@ public class SchoolManagementSystem {
     //FUNCTIONS
 
     public Student lookUpStudentById(String studentId) {
-        Student result = new Student();
         for (Student s : studentList) {
             if (s.getStudentId().equals(studentId)) {
-                result.equals(s);
+               return s;
             } else {
                 throw new IllegalArgumentException("Please insert a valid student ID");
             }
         }
-        return result;
+        throw new IllegalArgumentException("There are no students");
     }
 
     public Course lookUpCourseById(String courseId) {
-        Course result = new Course();
         for (Course c : courseList) {
             if (c.getCourseId().equals(courseId)) {
-                result.equals(c);
+                return c;
             } else {
                 throw new IllegalArgumentException("Please insert a valid course ID");
             }
         }
-        return result;
+        throw new IllegalArgumentException("There are no courses");
     }
 
     public Teacher lookUpTeacherById(String teacherId) {
-        Teacher result = new Teacher();
         for (Teacher t : teacherList) {
             if (t.getTeacherId().equals(teacherId)) {
-                result.equals(t);
+                return t;
             } else {
                 throw new IllegalArgumentException("Please insert a valid teacher ID");
             }
         }
-        return result;
+        throw new IllegalArgumentException("There are no teachers");
     }
 
 
@@ -110,22 +107,28 @@ public class SchoolManagementSystem {
         Course c = lookUpCourseById(courseId);
         c.setTeacher(t);
     }
-    public void showCourses(){
-        getCourseList().toString();
+    public String showCourses(){
+        return getCourseList().toString();
     }
 
-    public void showStudents(){
-        getStudentList().toString();
+    public String showStudents(){
+        return getStudentList().toString();
     }
 
-    public void showTeachers(){
-        getTeacherList().toString();
+    public String showTeachers(){
+       return getTeacherList().toString();
     }
 
-    public void showProfit(){
+    public double showProfit() {
         //(The total money earned from all courses) - (The sum of all the teachers’ salaries) and return the result
-
+        double sumMoneyEarned = 0;
+        double sumSalaries = 0;
+        for (Course c : courseList) {
+            sumMoneyEarned =+ c.getMoneyEarned();
+        }
+        for (Teacher t : teacherList) {
+            sumSalaries =+ t.getSalary();
+        }
+         return sumMoneyEarned - sumSalaries;
     }
-
-    //Se pueden añadir mas funciones
 }

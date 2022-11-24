@@ -8,14 +8,16 @@ public class Course {
     private double moneyEarned;
     private Teacher teacher;
 
+    private static int nextId = 1;
+    private final int id;
+
     //Constructor
 
     public Course(String name, double price) {
-        this.name = name;
-        this.price = price;
-    }
-
-    public Course() {
+        setName(name);
+        setPrice(price);
+        id = nextId++;
+        setCourseId();
     }
 
     //Getters & Setters
@@ -24,8 +26,8 @@ public class Course {
         return courseId;
     }
 
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
+    public void setCourseId() {
+        this.courseId = "C"+id;
     }
 
     public String getName() {

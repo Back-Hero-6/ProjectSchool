@@ -9,14 +9,16 @@ public class Student {
     private String email;
     private Course course;
 
+    private static int nextId = 1;
+    private final int id;
+
     //Constructor
     public Student(String name, String address, String email) {
-        this.name = name;
-        this.address = address;
-        this.email = email;
-    }
-
-    public Student() {
+        setName(name);
+        setAddress(address);
+        setEmail(email);
+        id = nextId++;
+        setStudentId();
     }
 
     //Getters & Setters
@@ -25,8 +27,8 @@ public class Student {
         return studentId;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setStudentId() {
+            this.studentId = "S-"+id;
     }
 
     public String getName() {
