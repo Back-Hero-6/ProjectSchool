@@ -3,7 +3,7 @@ package org.example;
 import java.util.Objects;
 
 public class Teacher {
-    private String teacherId; //Tiene que ser auto generated (pendiente)
+    private String teacherId;
     private String name;
     private double salary;
 
@@ -28,7 +28,7 @@ public class Teacher {
     }
 
     public void setTeacherId() {
-        this.teacherId = "T-"+id;
+        this.teacherId = "T"+id;
     }
 
     public String getName() {

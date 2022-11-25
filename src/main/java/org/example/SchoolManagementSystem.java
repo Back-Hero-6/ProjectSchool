@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
 public class SchoolManagementSystem {
 
@@ -57,41 +54,39 @@ public class SchoolManagementSystem {
     }
 
 
-
     //FUNCTIONS
 
     public Student lookUpStudentById(String studentId) {
         for (Student s : studentList) {
             if (s.getStudentId().equals(studentId)) {
-               return s;
-            } else {
-                throw new IllegalArgumentException("Please insert a valid student ID");
+                return s;
             }
         }
-        throw new IllegalArgumentException("There are no students");
+        System.err.println("Student ID not valid");
+        return null;
     }
 
     public Course lookUpCourseById(String courseId) {
         for (Course c : courseList) {
             if (c.getCourseId().equals(courseId)) {
                 return c;
-            } else {
-                throw new IllegalArgumentException("Please insert a valid course ID");
             }
         }
-        throw new IllegalArgumentException("There are no courses");
+        System.err.println("Course ID not valid");
+        return null;
     }
 
     public Teacher lookUpTeacherById(String teacherId) {
         for (Teacher t : teacherList) {
             if (t.getTeacherId().equals(teacherId)) {
                 return t;
-            } else {
-                throw new IllegalArgumentException("Please insert a valid teacher ID");
             }
         }
-        throw new IllegalArgumentException("There are no teachers");
+        System.err.println("Teacher ID not valid");
+        return null;
     }
+
+
 
 
     public void enroll(String studentId, String courseId){
@@ -99,8 +94,6 @@ public class SchoolManagementSystem {
         Course c = lookUpCourseById(courseId);
         s.setCourse(c);
         c.setMoneyEarned(c.getMoneyEarned() + c.getPrice());
-//        Map<String, String> enrolled = new HashMap<>();
-//        enrolled.put(studentId, courseId);
     }
     public void assignTeacher(String teacherId, String courseId){
         Teacher t = lookUpTeacherById(teacherId);
@@ -120,14 +113,13 @@ public class SchoolManagementSystem {
     }
 
     public double showProfit() {
-        //(The total money earned from all courses) - (The sum of all the teachers’ salaries) and return the result
         double sumMoneyEarned = 0;
         double sumSalaries = 0;
         for (Course c : courseList) {
-            sumMoneyEarned =+ c.getMoneyEarned();
+            sumMoneyEarned = sumMoneyEarned + c.getMoneyEarned();
         }
         for (Teacher t : teacherList) {
-            sumSalaries =+ t.getSalary();
+            sumSalaries = sumSalaries + t.getSalary();
         }
          return sumMoneyEarned - sumSalaries;
     }
