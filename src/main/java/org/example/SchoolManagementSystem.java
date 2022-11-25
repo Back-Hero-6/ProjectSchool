@@ -87,29 +87,29 @@ public class SchoolManagementSystem {
     }
 
 
-
-
-    public void enroll(String studentId, String courseId){
+    public void enroll(String studentId, String courseId) {
         Student s = lookUpStudentById(studentId);
         Course c = lookUpCourseById(courseId);
         s.setCourse(c);
         c.setMoneyEarned(c.getMoneyEarned() + c.getPrice());
     }
-    public void assignTeacher(String teacherId, String courseId){
+
+    public void assignTeacher(String teacherId, String courseId) {
         Teacher t = lookUpTeacherById(teacherId);
         Course c = lookUpCourseById(courseId);
         c.setTeacher(t);
     }
-    public String showCourses(){
+
+    public String showCourses() {
         return getCourseList().toString();
     }
 
-    public String showStudents(){
+    public String showStudents() {
         return getStudentList().toString();
     }
 
-    public String showTeachers(){
-       return getTeacherList().toString();
+    public String showTeachers() {
+        return getTeacherList().toString();
     }
 
     public double showProfit() {
@@ -121,6 +121,6 @@ public class SchoolManagementSystem {
         for (Teacher t : teacherList) {
             sumSalaries = sumSalaries + t.getSalary();
         }
-         return sumMoneyEarned - sumSalaries;
+        return sumMoneyEarned - sumSalaries;
     }
 }

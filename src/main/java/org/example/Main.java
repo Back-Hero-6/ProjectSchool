@@ -4,22 +4,21 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        //PASO 8
+        //Method to initialize a new school and use its application
         runSchoolApp();
     }
 
-    //FUNCTION 1: Metodo para meter el nombre de la escuela
+    //FUNCTION 1: Method to create school
     private static SchoolManagementSystem createSchool() {
 
         Scanner sc = new Scanner(System.in);
-        //PASO 1: dar nombre a la escuela
+        //STEP 1: give the school a name
         System.out.println("Enter the name of the school");
         String schoolName = sc.nextLine();
 
-        //PASO 2: Escoger numero de profesores y poner sus detalles
+        //STEP 2-3: Insert number if teachers and its details
         System.out.println("Enter the number of teachers to create");
         int numOfTeachers = sc.nextInt();
-        //PASO 3:
         List<org.example.Teacher> teacherList = new ArrayList<>(numOfTeachers);
         for (int i = 1; i <= numOfTeachers; i++) {
             System.out.println("Enter the details of teacher " + i);
@@ -29,10 +28,9 @@ public class Main {
             double salary = sc.nextDouble();
             teacherList.add(new Teacher(teacherName, salary));
         }
-        //PASO 4:
+        //STEP 4-5: Insert number of courses and its details
         System.out.println("Enter the number of courses to create");
         int numOfCourses = sc.nextInt();
-        //PASO 5:
         List<org.example.Course> courseList = new ArrayList<>(numOfCourses);
         for (int i = 1; i <= numOfCourses; i++) {
             System.out.println("Enter the details of course " + i);
@@ -42,10 +40,9 @@ public class Main {
             double price = sc.nextDouble();
             courseList.add(new Course(courseName, price));
         }
-        //PASO 6
+        //STEP 6-7: Insert number of students and its details
         System.out.println("Enter the number of students to create");
         int numOfStudents = sc.nextInt();
-        //PASO 7
         List<org.example.Student> studentList = new ArrayList<>(numOfStudents);
         for (int i = 1; i <= numOfStudents; i++) {
             System.out.println("Enter the details of student " + i);
@@ -62,7 +59,7 @@ public class Main {
     }
 
 
-    //FUNCTION: Método para mostrar el menú de comandos disponibles
+    //MAIN FUNCTION: Method to run full application
     private static void runSchoolApp() {
         //Initializing the SMS to a new object school by calling the method createSchool():
         SchoolManagementSystem sms = createSchool();
@@ -89,7 +86,7 @@ public class Main {
                     String courseId = sc.next();
                     //enroll student
                     sms.enroll(studentId, courseId);
-                    System.out.println("\n" +studentId+" has been enrolled to "+courseId+ "\n");
+                    System.out.println("\n" + studentId + " has been enrolled to " + courseId + "\n");
                     sc.nextLine();
                 }
                 break;
@@ -100,7 +97,7 @@ public class Main {
                     String courseId = sc.next();
                     //assign teacher
                     sms.assignTeacher(teacherId, courseId);
-                    System.out.println("\n" +teacherId+" has been assigned to "+courseId+ "\n");
+                    System.out.println("\n" + teacherId + " has been assigned to " + courseId + "\n");
                     sc.nextLine();
                 }
                 break;
@@ -112,7 +109,7 @@ public class Main {
                 case 4: {
                     System.out.println("Please introduce a Course ID to search for");
                     String courseId = sc.next();
-                    System.out.println("\n" +sms.lookUpCourseById(courseId)+ "\n");
+                    System.out.println("\n" + sms.lookUpCourseById(courseId) + "\n");
                     sc.nextLine();
                 }
                 break;
@@ -124,7 +121,7 @@ public class Main {
                 case 6: {
                     System.out.println("Please introduce a Student ID to search for");
                     String studentId = sc.next();
-                    System.out.println("\n" + sms.lookUpStudentById(studentId)+ "\n");
+                    System.out.println("\n" + sms.lookUpStudentById(studentId) + "\n");
                     sc.nextLine();
                 }
                 break;
@@ -136,7 +133,7 @@ public class Main {
                 case 8: {
                     System.out.println("Please introduce a Teacher ID to search for");
                     String teacherId = sc.next();
-                    System.out.println("\n" +sms.lookUpTeacherById(teacherId)+ "\n");
+                    System.out.println("\n" + sms.lookUpTeacherById(teacherId) + "\n");
                     sc.nextLine();
                 }
                 break;
@@ -145,7 +142,7 @@ public class Main {
                 }
                 break;
                 case 0: {
-                    System.out.println("\n" +"GOODBYE!");
+                    System.out.println("\n" + "GOODBYE!");
                     System.exit(1);
                 }
                 default: {
@@ -155,6 +152,7 @@ public class Main {
         }
     }
 
+    //Method to show Menu commands.
     public static void showMenu() {
         System.out.println("""
                 MENU\s
